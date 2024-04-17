@@ -20,7 +20,4 @@
 
     <node pkg="ocs2_double_integrator_ros" type="double_integrator_dummy_test" name="double_integrator_dummy_test"
           output="screen" args="$(arg task_name)" launch-prefix="gnome-terminal --"/>
-
-    <node pkg="ocs2_double_integrator_ros" type="double_integrator_target" name="double_integrator_target"
-          output="screen" args="$(arg task_name)" launch-prefix="gnome-terminal --"/>
 </launch>
