@@ -95,14 +95,18 @@ DoubleIntegratorInterface::DoubleIntegratorInterface(const std::string& taskFile
   // const matrix_t A = (matrix_t(STATE_DIM, STATE_DIM) << 0.0, 1.0, 0.0, 0.0).finished();
   // const matrix_t B = (matrix_t(STATE_DIM, INPUT_DIM) << 0.0, 1.0).finished();
 
-  const matrix_t A = (matrix_t(STATE_DIM, STATE_DIM) << 0.0, 0.0, 1.0, 0.0, 
-                                                        0.0, 0.0, 0.0, 1.0,
-                                                        0.0, 0.0, 0.0, 0.0,
-                                                        0.0, 0.0, 0.0, 0.0).finished();
-  const matrix_t B = (matrix_t(STATE_DIM, INPUT_DIM) << 0.0, 0.0,
-                                                        0.0, 0.0,
-                                                        1.0, 0.0,
-                                                        0.0, 1.0).finished();
+  const matrix_t A = (matrix_t(STATE_DIM, STATE_DIM) << 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 
+                                                        0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
+                                                        0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+                                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0).finished();
+  const matrix_t B = (matrix_t(STATE_DIM, INPUT_DIM) << 0.0, 0.0, 0.0,
+                                                        0.0, 0.0, 0.0,
+                                                        0.0, 0.0, 0.0,
+                                                        1.0, 0.0, 0.0,
+                                                        0.0, 1.0, 0.0,
+                                                        0.0, 0.0, 1.0).finished();
   problem_.dynamicsPtr.reset(new LinearSystemDynamics(A, B));
 
   // Rollout

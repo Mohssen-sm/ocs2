@@ -41,16 +41,20 @@ void DoubleIntegratorDummyVisualization::update(const SystemObservation& observa
   const auto& targetTrajectories = command.mpcTargetTrajectories_;
   sensor_msgs::JointState joint_state;
   joint_state.header.stamp = ros::Time::now();
-  joint_state.name.resize(4);
-  joint_state.position.resize(4);
-  joint_state.name[0] = "slider_to_cart";
+  joint_state.name.resize(6);
+  joint_state.position.resize(6);
+  joint_state.name[0] = "pri1";
   joint_state.position[0] = observation.state(0);
-  joint_state.name[1] = "slider1_to_slider2";
+  joint_state.name[1] = "pri2";
   joint_state.position[1] = observation.state(1);
-  joint_state.name[2] = "slider_to_target";
-  joint_state.position[2] = targetTrajectories.stateTrajectory[0](0);
-  joint_state.name[3] = "slider1_to_slider2_target";
-  joint_state.position[3] = targetTrajectories.stateTrajectory[0](1);
+  joint_state.name[2] = "rev1";
+  joint_state.position[2] = observation.state(2);
+  joint_state.name[3] = "pri1_target";
+  joint_state.position[3] = targetTrajectories.stateTrajectory[0](0);
+  joint_state.name[4] = "pri2_target";
+  joint_state.position[4] = targetTrajectories.stateTrajectory[0](1);
+  joint_state.name[5] = "rev1_target";
+  joint_state.position[5] = targetTrajectories.stateTrajectory[0](2);
 
   jointPublisher_.publish(joint_state);
 }
